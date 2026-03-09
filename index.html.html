@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroBeat — Earphones Brand Launch</title>
+  <style>
+    :root{
+      --bg:#07111b;
+      --bg2:#0d1f31;
+      --card:rgba(255,255,255,0.08);
+      --line:rgba(255,255,255,0.14);
+      --text:#f6fbff;
+      --muted:#b9c8d8;
+      --accent:#45e0c6;
+      --accent2:#77a8ff;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(119,168,255,.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(69,224,198,.12), transparent 25%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height:100vh;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px, calc(100% - 32px)); margin:auto}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background:rgba(7,17,27,.68);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:14px;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      display:grid; place-items:center; color:#07111b; font-weight:900;
+      box-shadow: var(--shadow);
+    }
+    .nav-links{display:flex; gap:20px; color:var(--muted); font-size:14px}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 22px; border-radius:999px; font-weight:700;
+      background:linear-gradient(135deg, var(--accent), #8ef1df);
+      color:#062019; box-shadow:var(--shadow);
+    }
+    .cta.secondary{
+      background:transparent; color:var(--text);
+      border:1px solid var(--line); box-shadow:none;
+    }
+    .hero{
+      padding:72px 0 56px;
+      display:grid; grid-template-columns:1.15fr .85fr; gap:34px; align-items:center;
+    }
+    .eyebrow{
+      display:inline-block; padding:8px 14px; border-radius:999px;
+      background:rgba(255,255,255,.06); border:1px solid var(--line);
+      color:#d8fef7; font-size:13px; margin-bottom:18px;
+    }
+    h1{
+      font-size:clamp(38px, 7vw, 72px);
+      line-height:.98; margin:0 0 18px;
+      letter-spacing:-1.8px;
+    }
+    .sub{
+      color:var(--muted); font-size:18px; line-height:1.7; max-width:620px;
+      margin-bottom:28px;
+    }
+    .hero-actions{display:flex; gap:14px; flex-wrap:wrap}
+    .stats{
+      margin-top:26px; display:flex; gap:18px; flex-wrap:wrap;
+    }
+    .stat{
+      background:var(--card); border:1px solid var(--line); border-radius:18px;
+      padding:16px 18px; min-width:150px;
+    }
+    .stat strong{display:block; font-size:24px; margin-bottom:5px}
+    .stat span{color:var(--muted); font-size:13px}
+    .visual{
+      position:relative; min-height:540px;
+      display:grid; place-items:center;
+    }
+    .glow{
+      position:absolute; inset:auto; width:360px; height:360px;
+      background:radial-gradient(circle, rgba(69,224,198,.28), transparent 65%);
+      filter:blur(18px);
+      top:100px; left:50%; transform:translateX(-50%);
+    }
+    .card-3d{
+      width:min(440px, 100%); aspect-ratio: 1/1.1;
+      border-radius:36px; position:relative;
+      background:linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .ring{
+      position:absolute; border:1px solid rgba(255,255,255,.14); border-radius:50%;
+      inset:12% 14%; transform:rotate(12deg);
+    }
+    .ring.r2{inset:20% 22%; opacity:.6}
+    .ear{
+      position:absolute; width:122px; height:250px;
+      border-radius:70px; background:linear-gradient(180deg, #e9f5ff, #8ca3bd 70%, #5a6c80);
+      box-shadow:0 12px 30px rgba(0,0,0,.35);
+    }
+    .ear:before{
+      content:""; position:absolute; inset:14px 18px auto 18px; height:72px;
+      border-radius:50px; background:linear-gradient(180deg, #253241, #0f1822);
+    }
+    .ear:after{
+      content:""; position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+      width:34px; height:34px; border-radius:50%;
+      background:radial-gradient(circle at 35% 35%, var(--accent), #0d9983);
+      box-shadow:0 0 20px rgba(69,224,198,.45);
+    }
+    .ear.left{left:88px; top:116px; transform:rotate(-16deg)}
+    .ear.right{right:88px; top:116px; transform:rotate(16deg)}
+    .tiny-label{
+      position:absolute; bottom:24px; left:24px; right:24px;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 16px; border-radius:18px;
+      background:rgba(5,10,15,.45); border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);
+    }
+    .section{padding:28px 0 74px}
+    .section h2{
+      font-size:clamp(30px, 4vw, 46px); margin:0 0 14px; letter-spacing:-1px;
+    }
+    .section p.lead{
+      color:var(--muted); line-height:1.7; max-width:720px; margin:0 0 28px;
+    }
+    .grid{
+      display:grid; grid-template-columns:repeat(4, 1fr); gap:18px;
+    }
+    .card{
+      background:var(--card); border:1px solid var(--line);
+      border-radius:var(--radius); padding:24px; box-shadow:var(--shadow);
+    }
+    .card h3{margin:0 0 10px; font-size:20px}
+    .card p{margin:0; color:var(--muted); line-height:1.7}
+    .badge{
+      display:inline-flex; padding:8px 12px; border-radius:999px; margin-bottom:14px;
+      background:rgba(69,224,198,.12); color:#b6fff2; border:1px solid rgba(69,224,198,.22);
+      font-size:12px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;
+    }
+    .showcase{
+      display:grid; grid-template-columns:1fr 1fr; gap:20px;
+    }
+    .panel{
+      min-height:340px; position:relative; overflow:hidden;
+    }
+    .timeline{display:grid; gap:14px}
+    .step{
+      display:grid; grid-template-columns:54px 1fr; gap:14px; align-items:start;
+      background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:18px;
+      padding:16px;
+    }
+    .num{
+      width:54px; height:54px; border-radius:16px;
+      display:grid; place-items:center; font-weight:800;
+      background:linear-gradient(135deg, var(--accent2), var(--accent));
+      color:#08121d;
+    }
+    .deliverables{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:20px;
+    }
+    ul.clean{margin:0; padding-left:18px; color:var(--muted); line-height:2}
+    .footer{
+      padding:24px 0 52px; color:var(--muted); font-size:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .mock-ad{
+      position:absolute; inset:0; display:grid; place-items:center;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(69,224,198,.2), transparent 25%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .mock-phone{
+      width:210px; height:320px; border-radius:30px; border:1px solid rgba(255,255,255,.14);
+      background:#0a1320; padding:16px; box-shadow:var(--shadow);
+    }
+    .mock-screen{
+      width:100%; height:100%; border-radius:22px; overflow:hidden;
+      background:linear-gradient(180deg, #102338, #08111a);
+      display:flex; flex-direction:column; justify-content:space-between; padding:18px;
+    }
+    .mini-ear{
+      height:140px; border-radius:24px;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(69,224,198,.2), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      position:relative;
+    }
+    .mini-ear:before,.mini-ear:after{
+      content:""; position:absolute; top:26px; width:34px; height:80px; border-radius:24px;
+      background:linear-gradient(180deg,#d9ecff,#72879c);
+    }
+    .mini-ear:before{left:50px; transform:rotate(-16deg)}
+    .mini-ear:after{right:50px; transform:rotate(16deg)}
+    .small-lines div{
+      height:10px; border-radius:99px; background:rgba(255,255,255,.12); margin-top:10px;
+    }
+    .small-lines div:nth-child(2){width:70%}
+    .small-lines div:nth-child(3){width:48%}
+    @media (max-width: 960px){
+      .hero,.showcase,.deliverables{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .visual{min-height:460px}
+    }
+    @media (max-width: 620px){
+      .nav-links{display:none}
+      .hero{padding-top:44px}
+      .grid{grid-template-columns:1fr}
+      .card-3d{max-width:360px}
+      .ear{width:100px; height:220px}
+      .ear.left{left:66px}
+      .ear.right{right:66px}
+      .tiny-label{font-size:13px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">A</div>
+        <div>AeroBeat Launch</div>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#concept">Concept</a>
+        <a href="#process">Process</a>
+        <a href="#deliverables">Deliverables</a>
+      </div>
+      <a class="cta secondary" href="#deliverables">View Scope</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Graphic animation project for earphones ads</div>
+        <h1>Launch your earphones brand with a premium ad-ready website.</h1>
+        <p class="sub">
+          A polished project page built for product marketing, client presentations, and campaign approvals.
+          It showcases the animation concept, ad strategy, production flow, and final deliverables in one clean place.
+        </p>
+        <div class="hero-actions">
+          <a class="cta" href="#concept">See Project Concept</a>
+          <a class="cta secondary" href="#process">Production Workflow</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>1080p / 4K</strong>
+            <span>Ad-ready exports</span>
+          </div>
+          <div class="stat">
+            <strong>9:16 / 1:1 / 16:9</strong>
+            <span>Social formats</span>
+          </div>
+          <div class="stat">
+            <strong>1 campaign</strong>
+            <span>One-time project scope</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="glow"></div>
+        <div class="card-3d">
+          <div class="ring"></div>
+          <div class="ring r2"></div>
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+          <div class="tiny-label">
+            <div>
+              <strong style="display:block;font-size:15px;">AeroBeat X1</strong>
+              <span style="color:var(--muted);font-size:13px;">Wireless earphones campaign concept</span>
+            </div>
+            <div style="font-weight:800;color:#c5fff4;">LIVE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <span class="badge">Project Highlights</span>
+      <h2>What this website presents to your client</h2>
+      <p class="lead">
+        This project page is designed to make your service look established and professional while clearly explaining
+        the ad animation direction for the earphones launch.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Product Reveal</h3>
+          <p>Showcases a clean cinematic reveal concept to introduce the earphones with a premium visual feel.</p>
+        </div>
+        <div class="card">
+          <h3>Motion Graphics</h3>
+          <p>Explains how text callouts, highlights, and transitions will be used for ad storytelling.</p>
+        </div>
+        <div class="card">
+          <h3>Multi-Platform Ads</h3>
+          <p>Positions the animation for Instagram, TikTok, Facebook, YouTube, websites, and paid campaigns.</p>
+        </div>
+        <div class="card">
+          <h3>Brand Positioning</h3>
+          <p>Frames the earphones as stylish, modern, and market-ready with a strong launch presentation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concept">
+      <span class="badge">Creative Concept</span>
+      <h2>Ad concept and launch direction</h2>
+      <p class="lead">
+        The visual idea focuses on a dark premium background, dramatic lighting, reflective product surfaces,
+        and smooth movement that makes the earphones feel high-value and modern.
+      </p>
+
+      <div class="showcase">
+        <div class="card panel">
+          <div class="mock-ad">
+            <div class="mock-phone">
+              <div class="mock-screen">
+                <div style="font-size:12px;color:#bdeee6;letter-spacing:.3px;">AD PREVIEW</div>
+                <div class="mini-ear"></div>
+                <div>
+                  <div style="font-weight:800;font-size:22px;margin-bottom:8px;">Pure Sound. Bold Style.</div>
+                  <div class="small-lines">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0;">Core visual messaging</h3>
+          <p style="margin-bottom:18px;color:var(--muted);line-height:1.8;">
+            The campaign is built to make the product feel sleek and desirable in the first few seconds.
+            This helps the client imagine the final ad before production begins.
+          </p>
+          <ul class="clean">
+            <li>Bold product-first visuals</li>
+            <li>Modern lighting and glossy reflections</li>
+            <li>Short attention-grabbing ad pacing</li>
+            <li>Text overlays for features and selling points</li>
+            <li>Versions for launch posts, reels, and website banners</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <span class="badge">Workflow</span>
+      <h2>Simple production process</h2>
+      <p class="lead">
+        This section shows the client that the project will move in clear steps from concept to final export.
+      </p>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="num">01</div>
+          <div>
+            <h3 style="margin:4px 0 8px;">Concept Design</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.7;">
+              Develop the visual direction, styling, product framing, color mood, and ad format choices.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <div>
+            <h3 style="margin:4px 0 8px;">Graphic Animation Build</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.7;">
+              Animate the product reveal, feature callouts, transitions, and branded typography.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <div>
+            <h3 style="margin:4px 0 8px;">Ad Polish</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.7;">
+              Add finishing details like timing refinement, light effects, motion cleanup, and export setup.
+            </p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">04</div>
+          <div>
+            <h3 style="margin:4px 0 8px;">Final Delivery</h3>
+            <p style="margin:0;color:var(--muted);line-height:1.7;">
+              Deliver campaign-ready files for social media ads, website use, and launch marketing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="deliverables">
+      <span class="badge">Client Scope</span>
+      <h2>Project deliverables</h2>
+      <p class="lead">
+        A complete one-time project setup for an earphones brand launch campaign.
+      </p>
+
+      <div class="deliverables">
+        <div class="card">
+          <h3 style="margin-top:0;">Included</h3>
+          <ul class="clean">
+            <li>High-end product campaign landing page</li>
+            <li>Graphic animation presentation layout</li>
+            <li>Ad concept for earphones launch</li>
+            <li>Website-ready visuals and campaign messaging</li>
+            <li>Sections for client review and approval</li>
+            <li>Professional presentation style for pitching</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Best use</h3>
+          <p style="color:var(--muted);line-height:1.8;">
+            Use this page as your project presentation, a sales page for the client, or a section inside your portfolio website.
+            It is built as one single HTML file so it is easy to upload to GitHub Pages or send to someone quickly.
+          </p>
+          <div style="margin-top:22px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="cta" href="mailto:?subject=Earphones%20Launch%20Project&body=Please%20see%20the%20project%20page.">Share Project</a>
+            <a class="cta secondary" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Built for a product launch presentation • Earphones graphic animation project page
+    </div>
+  </main>
+</body>
+</html>
